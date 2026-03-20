@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  username     String     @unique
+  passwordHash String     @map("password_hash")
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+  progress     Progress[]
+  @@map("users")
+}
+
+model Problem {
+  id          String     @id @default(uuid())
+  title       String
+  description String
+  topic       String
+  difficulty  String
+  options     Json
+  answer      String
+  explanation String
+  podDate     DateTime?  @map("pod_date") @db.Date
+  createdAt   DateTime   @default(now()) @map("created_at")
+  progress    Progress[]
+  @@map("problems")
+}
+
+model Progress {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  problemId  String   @map("problem_id")
+  date       DateTime @db.Date
+  solved     Boolean  @default(false)
+  correct    Boolean  @default(false)
+  score      Int      @default(0)
+  timeTaken  Int      @default(0) @map("time_taken")
+  difficulty String
+  createdAt  DateTime @default(now()) @map("created_at")
+  user       User     @relation(fields: [userId], references: [id])
+  problem    Problem  @relation(fields: [problemId], references: [id])
+  @@unique([userId, problemId, date])
+  @@map("progress")
+}

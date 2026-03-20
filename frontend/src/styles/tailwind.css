@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-space-900 text-star font-sans;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-space-900; }
+  ::-webkit-scrollbar-thumb { @apply bg-space-500 rounded-full; }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+  .nebula-btn {
+    @apply px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300
+           bg-gradient-to-r from-nebula-blue to-nebula-purple
+           hover:from-nebula-purple hover:to-nebula-cyan
+           shadow-lg hover:shadow-nebula-blue/30 hover:scale-105 active:scale-95;
+  }
+  .chip {
+    @apply px-3 py-1 rounded-full text-xs font-mono font-medium
+           border border-white/20 bg-white/5;
+  }
+  .chip-easy { @apply text-green-400 border-green-400/40 bg-green-400/10; }
+  .chip-medium { @apply text-yellow-400 border-yellow-400/40 bg-yellow-400/10; }
+  .chip-hard { @apply text-red-400 border-red-400/40 bg-red-400/10; }
+  .input-field {
+    @apply w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3
+           text-star placeholder-comet font-mono text-sm
+           focus:outline-none focus:border-nebula-cyan/60
+           transition-all duration-200;
+  }
+  .layer { position: relative; z-index: 10; }
+  .star-canvas {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
+}
