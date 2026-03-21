@@ -36,7 +36,7 @@ export default function ProblemSolve() {
   const submit = async (opt) => {
     if (submitted) return;
     setSelected(opt);
-    const res = await fetch('${import.meta.env.VITE_API_URL}/api/problems/submit', {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/problems/submit`, {
       method: 'POST', headers: headers(),
       body: JSON.stringify({ problemId: problem.id, answer: opt, timeTaken: elapsed }),
     });
