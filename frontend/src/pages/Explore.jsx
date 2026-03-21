@@ -24,7 +24,7 @@ export default function Explore() {
   const { headers } = useAuthStore();
 
   useEffect(() => {
-    fetch('${import.meta.env.VITE_API_URL}/api/problems/today', { headers: headers() })
+    fetch(`${import.meta.env.VITE_API_URL}/api/problems/today`, { headers: headers() })
       .then(r => r.json())
       .then(d => setTodayProblem(d.problem))
       .catch(() => {});
