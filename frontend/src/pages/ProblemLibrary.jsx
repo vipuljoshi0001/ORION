@@ -25,7 +25,7 @@ export default function ProblemLibrary() {
         const p = new URLSearchParams({ limit: '100' });
         if (topic !== 'All') p.set('topic', topic);
         if (diff !== 'All') p.set('difficulty', diff);
-        const res = await fetch(`/api/problems?${p}`, { headers: headers() });
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/problems?${p}`, { headers: headers() });
         const data = await res.json();
         setProblems(data.problems || []);
         setTotal(data.total || 0);

@@ -20,9 +20,9 @@ export default function Dashboard() {
     (async () => {
       try {
         const [hr, pr, sr] = await Promise.all([
-          fetch('/api/progress/heatmap', { headers: headers() }),
-          fetch('/api/problems/today', { headers: headers() }),
-          fetch('/api/progress', { headers: headers() }),
+          fetch('${import.meta.env.VITE_API_URL}/api/progress/heatmap', { headers: headers() }),
+          fetch('${import.meta.env.VITE_API_URL}/api/problems/today', { headers: headers() }),
+          fetch('${import.meta.env.VITE_API_URL}/api/progress', { headers: headers() }),
         ]);
         const hd = await hr.json();
         const pd = await pr.json();

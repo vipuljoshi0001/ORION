@@ -22,7 +22,7 @@ export default function ProblemSolve() {
     reset();
     (async () => {
       try {
-        const res = await fetch(`/api/problems/${id}`, { headers: headers() });
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/problems/${id}`, { headers: headers() });
         const data = await res.json();
         setProblem(data.problem);
         setCurrent(data.problem);
@@ -36,7 +36,7 @@ export default function ProblemSolve() {
   const submit = async (opt) => {
     if (submitted) return;
     setSelected(opt);
-    const res = await fetch('/api/problems/submit', {
+    const res = await fetch('${import.meta.env.VITE_API_URL}/api/problems/submit', {
       method: 'POST', headers: headers(),
       body: JSON.stringify({ problemId: problem.id, answer: opt, timeTaken: elapsed }),
     });

@@ -19,7 +19,7 @@ export default function ProblemOfDay() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch('/api/problems/today', { headers: headers() });
+        const res = await fetch('${import.meta.env.VITE_API_URL}/api/problems/today', { headers: headers() });
         const data = await res.json();
         setProblem(data.problem);
         setAlreadySolved(data.alreadySolved);
@@ -32,7 +32,7 @@ export default function ProblemOfDay() {
   const submit = async (opt) => {
     if (submitted || alreadySolved) return;
     setSelected(opt);
-    const res = await fetch('/api/problems/submit', {
+    const res = await fetch('${import.meta.env.VITE_API_URL}/api/problems/submit', {
       method: 'POST', headers: headers(),
       body: JSON.stringify({ problemId: problem.id, answer: opt, timeTaken: elapsed }),
     });

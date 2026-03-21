@@ -27,7 +27,11 @@ export default function Landing() {
   const handle = async () => {
     setError(''); setLoading(true);
     try {
-      const url = mode === 'login' ? '/api/auth/login' : '/api/auth/register';
+      const base = import.meta.env.VITE_API_URL;
+
+const url = mode === 'login'
+  ? `${base}/api/auth/login`
+  : `${base}/api/auth/register`;
       const body = mode === 'login'
         ? { email: form.email, password: form.password }
         : form;
