@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuthStore } from './store/authStore.js';
 import Landing from './pages/Landing.jsx';
+import Explore from './pages/Explore.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import ProblemOfDay from './pages/ProblemOfDay.jsx';
 import ProblemLibrary from './pages/ProblemLibrary.jsx';
@@ -17,6 +18,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/explore" element={<Guard><Explore /></Guard>} />
         <Route path="/dashboard" element={<Guard><Dashboard /></Guard>} />
         <Route path="/today" element={<Guard><ProblemOfDay /></Guard>} />
         <Route path="/problems" element={<Guard><ProblemLibrary /></Guard>} />

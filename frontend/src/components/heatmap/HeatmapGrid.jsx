@@ -34,7 +34,8 @@ export const HeatmapGrid = ({ heatmapData = {} }) => {
   }, [weeks]);
 
   return (
-    <div className="overflow-x-auto pb-2">
+  <div className="w-full overflow-x-auto pb-4">
+    <div className="min-w-[600px]">
       <div className="relative h-5 mb-1 ml-7">
         {monthLabels.map(({ i, label }) => (
           <span key={`${label}-${i}`}
@@ -68,5 +69,6 @@ export const HeatmapGrid = ({ heatmapData = {} }) => {
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 };

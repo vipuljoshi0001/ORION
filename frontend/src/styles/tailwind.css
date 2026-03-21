@@ -6,45 +6,160 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    @apply bg-space-900 text-star font-sans;
+    background: #000005;
+    color: #e2e8f0;
+    font-family: 'Space Grotesk', sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { @apply bg-space-900; }
-  ::-webkit-scrollbar-thumb { @apply bg-space-500 rounded-full; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #000; }
+  ::-webkit-scrollbar-thumb { background: #1a3a2a; border-radius: 4px; }
 }
 
-@layer components {
-  .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
-  }
-  .glass-dark {
-    @apply bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl;
-  }
-  .nebula-btn {
-    @apply px-6 py-3 rounded-xl font-semibold text-white transition-all duration-300
-           bg-gradient-to-r from-nebula-blue to-nebula-purple
-           hover:from-nebula-purple hover:to-nebula-cyan
-           shadow-lg hover:shadow-nebula-blue/30 hover:scale-105 active:scale-95;
-  }
-  .chip {
-    @apply px-3 py-1 rounded-full text-xs font-mono font-medium
-           border border-white/20 bg-white/5;
-  }
-  .chip-easy { @apply text-green-400 border-green-400/40 bg-green-400/10; }
-  .chip-medium { @apply text-yellow-400 border-yellow-400/40 bg-yellow-400/10; }
-  .chip-hard { @apply text-red-400 border-red-400/40 bg-red-400/10; }
-  .input-field {
-    @apply w-full bg-white/5 border border-white/20 rounded-xl px-4 py-3
-           text-star placeholder-comet font-mono text-sm
-           focus:outline-none focus:border-nebula-cyan/60
-           transition-all duration-200;
-  }
-  .layer { position: relative; z-index: 10; }
-  .star-canvas {
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none; z-index: 0;
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.nav-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.nav-btn:hover {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.05);
+}
+
+.nav-btn-active {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.primary-btn {
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #000;
+  background: #34d399;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.primary-btn:hover {
+  background: #6ee7b7;
+  transform: scale(1.02);
+}
+
+.chip {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #6b7280;
+  display: inline-block;
+}
+
+.chip-easy {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.25);
+  background: rgba(52, 211, 153, 0.07);
+}
+
+.chip-medium {
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.25);
+  background: rgba(251, 191, 36, 0.07);
+}
+
+.chip-hard {
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.25);
+  background: rgba(248, 113, 113, 0.07);
+}
+
+.input-field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: #e2e8f0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input-field::placeholder {
+  color: #374151;
+}
+
+.input-field:focus {
+  border-color: rgba(52, 211, 153, 0.4);
+}
+
+.layer {
+  position: relative;
+  z-index: 10;
+}
+
+.star-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.heatmap-cell:hover {
+  transform: scale(1.4);
+  z-index: 20;
+}
+
+@media (max-width: 768px) {
+  .layer {
+    padding-top: 6rem;
   }
 }
